@@ -1,6 +1,7 @@
 import sys
 #!/usr/bin/python3
 
+
 def parse_log_line(line):
     """Parse a single log line and return the status code and file size."""
     fields = line.split()
@@ -38,10 +39,6 @@ def log_parser():
                 for code, count in status_code_count.items():
                     if count > 0:
                         print('{}: {}'.format(code, count))
-        print('File size: {}'.format(total_size))
-        for code, count in status_code_count.items():
-            if count > 0:
-                print('{}: {}'.format(code, count))
     except KeyboardInterrupt:
         print('File size: {}'.format(total_size))
         for code, count in status_code_count.items():
@@ -51,4 +48,3 @@ def log_parser():
 
 if __name__ == '__main__':
     log_parser()
-
