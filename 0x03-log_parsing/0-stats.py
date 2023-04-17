@@ -1,54 +1,50 @@
-import sys
 #!/usr/bin/python3
+"""
+this funtion reads stdin line by line and compute metrics
+"""
 
-def parse_log_line(line):
-    """Parse a single log line and return the status code and file size."""
-    fields = line.split()
-    if len(fields) < 2:
-        return None, None
-    status_code = int(fields[-2])
-    file_size = int(fields[-1])
-    return status_code, file_size
+import sys
 
 
-def log_parser():
-    """Parse logs from standard input and print metrics."""
+def parse_log():
     count = 0
-    total_size = 0
-    status_code_count = {
-        200: 0,
-        301: 0,
-        400: 0,
-        403: 0,
-        404: 0,
-        405: 0,
-        500: 0}
+    file_size = 0
+    pry_status_code = [200, 301, 400, 401, 403, 404, 405, 500]
+    status_code_count = {}
+
     try:
         for line in sys.stdin:
-            count += 1
-            status_code, file_size = parse_log_line(line)
-            if status_code is None:
+            each = line.split()
+            if len(each) < 2:
                 continue
-            if status_code in status_code_count:
-                status_code_count[status_code] += 1
-            if file_size is not None:
-                total_size += file_size
-            if count % 10 == 0:
-                print('File size: {}'.format(total_size))
-                for code, count in status_code_count.items():
-                    if count > 0:
-                        print('{}: {}'.format(code, count))
-        print('File size: {}'.format(total_size))
-        for code, count in status_code_count.items():
-            if count > 0:
-                print('{}: {}'.format(code, count))
+            try:
+                count += 1
+                file_size += int(each[-1:][0])
+                status_code = int(each[-2:][0])
+                if status_code in pry_status_code:
+                    if status_code in status_code_count:
+                        status_code_count[status_code] += 1
+                    else:
+                        status_code_count[status_code] = 1
+
+                if count == 10:
+                    count = 0
+                    print_error(file_size, status_code_count)
+            except ValueError:
+                continue
+        # if count > 0:
+            # print('Here')
+        print_error(file_size, status_code_count)
     except KeyboardInterrupt:
-        print('File size: {}'.format(total_size))
-        for code, count in status_code_count.items():
-            if count > 0:
-                print('{}: {}'.format(code, count))
+        print_error(file_size, status_code_count)
+        raise
+
+
+def print_error(file_size, status_code_count):
+    print('File size: {}'.format(file_size))
+    for items in sorted(status_code_count.items()):
+        print('{}: {}'.format(items[0], items[1]))
 
 
 if __name__ == '__main__':
-    log_parser()
-
+    parse_log()
