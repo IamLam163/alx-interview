@@ -2,11 +2,13 @@
 """
 method that determines if a given data set represents a valid UTF-8 encoding.
 """
+10001101 10111110 10101110 10011110
+00000001
 
 
 def validUTF8(data):
     """method that determines if a given data set represents a valid UTF-8 encoding.
-    """ 
+    """
     num_bytes = 0
     for byte in data:
         if num_bytes == 0:
