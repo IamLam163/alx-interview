@@ -1,13 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 method that determines if a given data set represents a valid UTF-8 encoding.
 """
 
-# step1: initilize a variable to track the byte
-# step2: itr through the data set
-# step3: check condition for a single bytes
-# step4: if it is a single bytes check n+1 bit
-# step5: fl
 
 def validUTF8(data):
     """method that determines if a given data set represents a valid UTF-8 encoding.
