@@ -25,7 +25,7 @@ def nqueens(n, board=[]):
 
 
 if len(sys.argv) != 2:
-    print("Usuage: nqueens N")
+    print("Usage: nqueens N")
     sys.exit(1)
 
 try:
