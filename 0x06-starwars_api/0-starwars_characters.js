@@ -5,14 +5,14 @@
 
 const request = require('request');
 
-const url = 'https://swapi.dev/api/films/';
+const url = 'https://swapi.dev/api';
 const args = process.argv.slice(1);
 
 if (args.length < 2) {
   console.log('Please provide movie id!');
 } else {
   const movie = args[1];
-  request(`${url}${movie}`, (error, response, body) => {
+  request(`${url}/films/${movie}`, (error, response, body) => {
     if (error) {
       console.error(error);
     } else {
