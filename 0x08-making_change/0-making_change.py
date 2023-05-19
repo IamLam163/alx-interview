@@ -14,8 +14,8 @@ def makeChange(coins, total):
     coin_counter = 0
 
     for coin in range(len(sorted_coins)):
-        while coin <= total:
-            total -= coin
+        while sorted_coins[coin] <= total:
+            total -= sorted_coins[coin]
             coin_counter += 1
     if total == 0:
         return coin_counter
