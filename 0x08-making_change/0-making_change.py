@@ -21,7 +21,7 @@ def makeChange(coins, total):
     return -1
 
 
-"""   
+"""
     if total <= 0:
         return
     sorted_coins = sorted(coins, reverse=True)
