@@ -13,7 +13,7 @@ def makeChange(coins, total):
     sorted_coins = sorted(coins, reverse=True)
     coin_counter = 0
 
-    for coin in sorted_coins:
+    for coin in range(len(sorted_coins)):
         while coin <= total:
             total -= coin
             coin_counter += 1
