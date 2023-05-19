@@ -12,7 +12,6 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
     sort = sorted(coins, reverse=True)
-    # for number in sort:
     for i in range(len(sort)):
         while sort[i] <= total:
             total = total - sort[i]
@@ -22,15 +21,15 @@ def makeChange(coins, total):
     return -1
 
 
-"""
+"""   
     if total <= 0:
         return
     sorted_coins = sorted(coins, reverse=True)
     coin_counter = 0
 
-    for coin in range(len(sorted_coins)):
-        while sorted_coins[coin] <= total:
-            total -= sorted_coins[coin]
+    for coin in sorted_coins:
+        while coin <= total:
+            total -= coin
             coin_counter += 1
     if total == 0:
         return coin_counter
