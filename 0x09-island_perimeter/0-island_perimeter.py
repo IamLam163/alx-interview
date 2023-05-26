@@ -5,6 +5,7 @@ Island perimeter
 
 
 def island_perimeter(grid):
+    """function returns the perimeter"""
     if not isinstance(grid, list):
         return 0
 
